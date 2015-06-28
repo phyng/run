@@ -8,7 +8,6 @@ import os
 class Apm(object):
     """
     Apm help:
-        
         apm upload
         apm download
         apm sync
@@ -53,9 +52,10 @@ class Apm(object):
 
 def main(*args):
     apm = Apm()
-    if not args:
-        print help(apm.__doc__)
-    getattr(apm, args[0])()
+    if args and hasattr(apm, args[0]):
+        getattr(apm, args[0])()
+    else:
+        print help(apm)
 
 if __name__ == '__main__':
     apm = Apm()
