@@ -4,7 +4,6 @@ import sh
 import re
 import os
 
-
 class Apm(object):
     """
     Apm help:
@@ -12,7 +11,6 @@ class Apm(object):
         apm download
         apm sync
     """
-
     def __init__(self):
         pass
 

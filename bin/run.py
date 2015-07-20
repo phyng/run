@@ -15,7 +15,6 @@ import importlib
 
 BASE_DIR = os.path.dirname(__file__)
 
-
 def main():
     args = sys.argv
     os.chdir(sys.path[0])
