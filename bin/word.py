@@ -15,14 +15,20 @@ class Word(object):
     def __init__(self):
         pass
 
+    def get_system_dict(self):
+        path = '/usr/share/dict/american-english'
+        with open(path) as f:
+            words = f.read().split('\n')
+        return set(words)
+
     def generate(self, *args):
         url = args[0]
         document = pq(url)
         text = document.text()
         words = list(re.findall(r'[a-zA-Z]+', text))
         words = set([i.lower() for i in words])
+        words = self.get_system_dict() & words
         print len(words)
-
 
 def main(*args):
     word = Word()
