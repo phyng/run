@@ -20,7 +20,7 @@ def main():
     args = sys.argv
     os.chdir(sys.path[0])
     if len(args) == 1:
-        os.system('ls -l --color {}  | grep -E ".py"'.format(sys.path[0]))
+        os.system('ls -hl --color {}  | grep -E ".py$"'.format(sys.path[0]))
         return
     module = importlib.import_module(args[1])
     module.main(*args[2:])

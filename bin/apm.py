@@ -6,12 +6,7 @@ import os
 
 
 class Apm(object):
-    """
-    Apm help:
-        apm upload
-        apm download
-        apm sync
-    """
+
     def __init__(self):
         pass
 
@@ -34,27 +29,21 @@ class Apm(object):
     def cloud_set(self):
         return set([i[0] for i in self.stars()])
 
-    def upload(self):
+    def push(self):
         diff_set = self.local_set() - self.cloud_set()
         for pkg in diff_set:
             os.system('apm star {}'.format(pkg))
 
-    def download(self):
+    def pull(self):
         diff_set = self.cloud_set() - self.local_set()
         for pkg in diff_set:
             os.system('apm install {}'.format(pkg))
 
-    def sync(self):
-        self.upload()
-        self.download()
-
-    def upload_force(self):
+    def push_force(self):
         diff_set = self.cloud_set() - self.local_set()
         for pkg in diff_set:
             os.system('apm unstar {}'.format(pkg))
-        diff_set = self.local_set() - self.cloud_set()
-        for pkg in diff_set:
-            os.system('apm star {}'.format(pkg))
+        self.push()
 
 
 def main(*args):
